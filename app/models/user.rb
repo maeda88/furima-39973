@@ -10,4 +10,6 @@ class User < ApplicationRecord
   validates :family_name_kana, presence: true
   validates :first_name_kana, presence: true
   validates :birthday, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)/, message: "は半角英数字混合で入力してください" }
 end
+
