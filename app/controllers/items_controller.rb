@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: :index
+
   def index
   end
 
@@ -12,6 +14,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
+      # status: :unprocessable_entityでturboを無効にしている
     end
   end
 
