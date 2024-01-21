@@ -5,12 +5,20 @@ class Item < ApplicationRecord
   validates :image, presence: true
   validates :trade_name, presence: true
   validates :explanation, presence: true
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :condition_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :delivery_charge_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :delivery_time_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price, presence: true, inclusion: { in: 300..9999999, message: "は¥300~¥9,999,999の範囲で入力してください" }
+
+  with_options presence: true, numericality: { other_than: 1 , message: "can't be blank"} do
+    validates :category_id
+    validates :condition_id
+    validates :delivery_charge_id
+    validates :prefecture_id
+    validates :delivery_time_id  
+  end
+
+  validates :price, presence: true,
+                    numericality: { only_integer: true,
+                                    greater_than_or_equal_to: 300,
+                                    less_than_or_equal_to: 9999999,
+                                    message: "は半角数字 ¥300~¥9,999,999の範囲で入力してください" }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
