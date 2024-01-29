@@ -25,7 +25,6 @@ class ItemsController < ApplicationController
 
   def edit
     return if user_signed_in? && current_user == @item.user
-
     redirect_to root_path
   end
 
@@ -40,6 +39,8 @@ class ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy
+    redirect_to root_path
+    return if user_signed_in? && current_user == @item.user
     redirect_to root_path
   end
 
