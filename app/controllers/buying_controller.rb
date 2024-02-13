@@ -1,6 +1,7 @@
 class BuyingController < ApplicationController
   before_action :authenticate_user!
   def index
+    @item = Item.find(params[:item_id])
     @buying_address = BuyingAddress.new
   end
 
@@ -17,6 +18,6 @@ class BuyingController < ApplicationController
   private
 
   def buying_params
-    params.require(:buying_address).permit(:item_id, :buying_id, :postcode, :prefecture, :municipality, :street_address, :building_name, :phonenumber).merge(user_id: current_user.id)
+    params.require(:buying_address).permit(:postcode, :prefecture_id, :municipality, :street_address, :building_name, :phonenumber).merge(user_id: current_user.id, item_id: params[:item_id] )
   end
 end
