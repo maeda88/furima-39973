@@ -59,8 +59,6 @@ RSpec.describe BuyingAddress, type: :model do
         @buying_address.valid?
         expect(@buying_address.errors.full_messages).to include("Phonenumber is invalid. Include hyphen(-)")
       end
-
-
       it 'userが紐付いていないと保存できないこと' do
         @buying_address.user_id = nil
         @buying_address.valid?
@@ -70,6 +68,12 @@ RSpec.describe BuyingAddress, type: :model do
         @buying_address.item_id = nil
         @buying_address.valid?
         expect(@buying_address.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it "tokenが空では登録できないこと" do
+        @buying_address.token = nil
+        @buying_address.valid?
+        expect(@buying_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end

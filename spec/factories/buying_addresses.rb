@@ -6,5 +6,7 @@ FactoryBot.define do
     street_address { '1-1' }
     building_name { '東京ハイツ' }
     phonenumber { '09012345678' }
+    price { rand(300..100000) }
+    token {"tok_abcdefghijk00000000000000000"}
   end
 end
