@@ -18,4 +18,5 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX, message: 'は半角英数字混合で入力してください'
 
   has_many :items
+  has_many :buyings
 end

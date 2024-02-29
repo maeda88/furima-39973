@@ -26,4 +26,6 @@ class Item < ApplicationRecord
   belongs_to :delivery_charge
   belongs_to :prefecture
   belongs_to :delivery_time
+
+  has_one :buying
 end
