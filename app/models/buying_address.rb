@@ -1,7 +1,7 @@
 class BuyingAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :buying_id, :postcode, :prefecture_id, :municipality, :street_address, :building_name,
-                :phonenumber, :token, :price
+  attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :municipality, :street_address, :building_name,
+                :phonenumber, :token
 
   with_options presence: true do
     validates :user_id
