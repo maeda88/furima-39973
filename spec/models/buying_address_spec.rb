@@ -59,6 +59,11 @@ RSpec.describe BuyingAddress, type: :model do
         @buying_address.valid?
         expect(@buying_address.errors.full_messages).to include('Phonenumber is invalid. Include hyphen(-)')
       end
+      it 'phonenumberが半角数字以外が含まれている場合は購入できない' do
+        @buying_address.phonenumber = 'a9012345689'
+        @buying_address.valid?
+        expect(@buying_address.errors.full_messages).to include('Phonenumber is invalid. Include hyphen(-)')
+      end
       it 'userが紐付いていないと保存できないこと' do
         @buying_address.user_id = nil
         @buying_address.valid?
